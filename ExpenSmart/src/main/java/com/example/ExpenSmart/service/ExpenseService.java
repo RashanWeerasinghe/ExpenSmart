@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ExpenseService {
     public List<ExpenseTracker> getAllExpenses();
+
+    ExpenseTracker getExpenseById(Long id);
 }
