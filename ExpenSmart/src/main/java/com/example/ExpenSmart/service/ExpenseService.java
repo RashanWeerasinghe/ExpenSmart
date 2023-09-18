@@ -10,4 +10,6 @@ public interface ExpenseService {
     ExpenseTracker getExpenseById(Long id);
 
     void deleteExpenseById(Long id);
+
+    ExpenseTracker saveExpenseDetails(ExpenseTracker expenseTracker);
 }

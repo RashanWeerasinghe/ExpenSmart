@@ -37,4 +37,10 @@ public class ExpenseServiceImpl implements ExpenseService {
         ExpenseTracker expenseTracker=getExpenseById(id);
         expenseRepository.delete(expenseTracker);
     }
+
+    @Override
+    public ExpenseTracker saveExpenseDetails(ExpenseTracker expenseTracker) {
+
+        return expenseRepository.save(expenseTracker);
+    }
 }
