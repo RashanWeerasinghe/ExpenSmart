@@ -31,4 +31,10 @@ public class ExpenseServiceImpl implements ExpenseService {
         throw new RuntimeException("Expense is not found for the id "+id);
 
     }
+
+    @Override
+    public void deleteExpenseById(Long id) {
+        ExpenseTracker expenseTracker=getExpenseById(id);
+        expenseRepository.delete(expenseTracker);
+    }
 }

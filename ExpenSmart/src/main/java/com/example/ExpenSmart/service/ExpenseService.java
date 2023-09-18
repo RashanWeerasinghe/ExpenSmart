@@ -8,4 +8,6 @@ public interface ExpenseService {
     public List<ExpenseTracker> getAllExpenses();
 
     ExpenseTracker getExpenseById(Long id);
+
+    void deleteExpenseById(Long id);
 }
