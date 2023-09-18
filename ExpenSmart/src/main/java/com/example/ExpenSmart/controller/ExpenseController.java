@@ -32,4 +32,10 @@ public class ExpenseController {
     public ExpenseTracker saveExpenseDetails(@RequestBody ExpenseTracker expenseTracker){
         return expenseService.saveExpenseDetails(expenseTracker);
     }
+
+    @PutMapping("/expenses/{id}")
+    public ExpenseTracker updateExpenseDetails(@RequestBody ExpenseTracker expenseTracker,@PathVariable long id){
+         return expenseService.updateExpenseDetails(id,expenseTracker);
+
+    }
 }

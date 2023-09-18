@@ -12,4 +12,6 @@ public interface ExpenseService {
     void deleteExpenseById(Long id);
 
     ExpenseTracker saveExpenseDetails(ExpenseTracker expenseTracker);
+
+    ExpenseTracker updateExpenseDetails(long id, ExpenseTracker expenseTracker);
 }
