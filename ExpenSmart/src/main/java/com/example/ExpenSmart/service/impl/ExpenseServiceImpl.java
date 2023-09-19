@@ -1,9 +1,12 @@
 package com.example.ExpenSmart.service.impl;
 
+import com.example.ExpenSmart.Exception.ExpenseNotFoundException;
 import com.example.ExpenSmart.entity.ExpenseTracker;
 import com.example.ExpenSmart.repo.ExpenseRepository;
 import com.example.ExpenSmart.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,19 +19,19 @@ public class ExpenseServiceImpl implements ExpenseService {
     private ExpenseRepository expenseRepository;
 
     @Override
-    public List<ExpenseTracker> getAllExpenses() {
-        return expenseRepository.findAll();
+    public Page<ExpenseTracker> getAllExpenses(Pageable page) {
+        return expenseRepository.findAll(page);
     }
 
     @Override
-    public ExpenseTracker getExpenseById(Long id) {
+    public ExpenseTracker getExpenseById(Long id) throws ExpenseNotFoundException{
 
         Optional<ExpenseTracker>expenseTracker=expenseRepository.findById(id);
 
         if (expenseTracker.isPresent()) {
             return expenseTracker.get();
         }
-        throw new RuntimeException("Expense is not found for the id "+id);
+        throw new ExpenseNotFoundException("Expense is not found for the id "+id);
 
     }
 
