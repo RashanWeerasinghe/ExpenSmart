@@ -3,6 +3,9 @@ package com.example.ExpenSmart.controller;
 import com.example.ExpenSmart.entity.ExpenseTracker;
 import com.example.ExpenSmart.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,8 +17,9 @@ public class ExpenseController {
     @Autowired
     private ExpenseService expenseService;
     @GetMapping("/expenses")
-    public List<ExpenseTracker> getAllExpenses(){
-       return expenseService.getAllExpenses();
+    public List<ExpenseTracker> getAllExpenses(Pageable page){
+
+        return expenseService.getAllExpenses(page).toList();
     }
 
     @GetMapping("/expenses/{id}")
@@ -23,11 +27,13 @@ public class ExpenseController {
         return expenseService.getExpenseById(id);
     }
 
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @DeleteMapping("/expenses")
     public void deleteExpenseById(@RequestParam Long id){
         expenseService.deleteExpenseById(id);
     }
 
+    @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping("/expenses")
     public ExpenseTracker saveExpenseDetails(@RequestBody ExpenseTracker expenseTracker){
         return expenseService.saveExpenseDetails(expenseTracker);
