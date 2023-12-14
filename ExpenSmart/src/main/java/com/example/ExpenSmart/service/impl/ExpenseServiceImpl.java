@@ -64,4 +64,10 @@ public class ExpenseServiceImpl implements ExpenseService {
     public List<ExpenseTracker> readByCategory(String category, Pageable page) {
         return expenseRepository.findByUserIdAndCategory(category, page).toList();
     }
+
+    @Override
+    public List<ExpenseTracker> readByName(String keyword, Pageable page) {
+
+        return expenseRepository.findByUserIdAndNameContaining(keyword, page).toList();
+    }
 }
