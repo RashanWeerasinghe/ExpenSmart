@@ -4,6 +4,7 @@ import com.example.ExpenSmart.entity.ExpenseTracker;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface ExpenseService {
@@ -20,4 +21,6 @@ public interface ExpenseService {
     List<ExpenseTracker> readByCategory(String category, Pageable page);
 
     List<ExpenseTracker> readByName(String keyword, Pageable page);
+
+    List<ExpenseTracker> readByDate(Date startDate, Date endDate, Pageable page);
 }
