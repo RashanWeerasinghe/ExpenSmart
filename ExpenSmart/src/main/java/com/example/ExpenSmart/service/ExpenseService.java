@@ -18,4 +18,6 @@ public interface ExpenseService {
     ExpenseTracker updateExpenseDetails(long id, ExpenseTracker expenseTracker);
 
     List<ExpenseTracker> readByCategory(String category, Pageable page);
+
+    List<ExpenseTracker> readByName(String keyword, Pageable page);
 }
