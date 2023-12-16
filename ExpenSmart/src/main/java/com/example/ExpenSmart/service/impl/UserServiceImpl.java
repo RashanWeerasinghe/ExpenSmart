@@ -7,10 +7,13 @@ import com.example.ExpenSmart.repo.UserRepository;
 import com.example.ExpenSmart.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
 
     @Autowired
     UserRepository userRepository;
@@ -21,7 +24,7 @@ public class UserServiceImpl implements UserService {
         }
         User newUser=new User();
         BeanUtils.copyProperties(user,newUser);
-        newUser.setPassword(newUser.getPassword());
+        newUser.setPassword(bcryptEncoder.encode(newUser.getPassword()));
         return userRepository.save(newUser);
     }
 }
